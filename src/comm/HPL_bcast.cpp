@@ -71,6 +71,7 @@ int HPL_bcast(double*   SBUF,
     case HPL_2RING: ierr = HPL_bcast_2ring(SBUF, SCOUNT, ROOT, COMM); break;
     case HPL_BLONG_M: ierr = HPL_bcast_blonM(SBUF, SCOUNT, ROOT, COMM); break;
     case HPL_BLONG: ierr = HPL_bcast_blong(SBUF, SCOUNT, ROOT, COMM); break;
+    case HPL_BIDIR: ierr = HPL_bcast_bidir(SBUF, SCOUNT, ROOT, COMM); break;
     default: ierr = HPL_FAILURE;
   }
 

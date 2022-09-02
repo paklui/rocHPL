@@ -174,6 +174,8 @@ void HPL_pdtest(HPL_T_test* TEST,
       ctop = '3';
     else if(ALGO->btopo == HPL_BLONG)
       ctop = '4';
+    else if( ALGO->btopo == HPL_BIDIR)
+      ctop = '7';
     else /* if( ALGO->btopo == HPL_BLONG_M ) */
       ctop = '5';
 

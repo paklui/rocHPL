@@ -505,7 +505,7 @@ void HPL_pdinfo(int          ARGC,
     *NRFS = 1;
     RF[0] = HPL_RIGHT_LOOKING; // HPL_LEFT_LOOKING, HPL_CROUT;
     /*
-     * Broadcast topology (TP) (0=rg, 1=2rg, 2=rgM, 3=2rgM, 4=L)
+     * Broadcast topology (TP) (0=rg, 1=2rg, 2=rgM, 3=2rgM, 4=L, 7=BiDir)
      */
     *NTPS = 1;
     TP[0] = HPL_1RING;
@@ -874,6 +874,8 @@ void HPL_pdinfo(int          ARGC,
           TP[i] = HPL_2RING_M;
         else if(j == 4)
           TP[i] = HPL_BLONG;
+        else if(j == 7)
+          TP[i] = HPL_BIDIR;
         else // if(j == 5)
           TP[i] = HPL_BLONG_M;
       }
@@ -1122,6 +1124,8 @@ void HPL_pdinfo(int          ARGC,
           iwork[j] = 4;
         else if(TP[i] == HPL_BLONG_M)
           iwork[j] = 5;
+        else if(TP[i] == HPL_BIDIR)
+          iwork[j] = 7;
         j++;
       }
       for(i = 0; i < *NDHS; i++) {
@@ -1196,6 +1200,8 @@ void HPL_pdinfo(int          ARGC,
           TP[i] = HPL_BLONG;
         else if(iwork[j] == 5)
           TP[i] = HPL_BLONG_M;
+        else if(iwork[j] == 7)
+          TP[i] = HPL_BIDIR;
         j++;
       }
       for(i = 0; i < *NDHS; i++) {
@@ -1436,6 +1442,8 @@ void HPL_pdinfo(int          ARGC,
         HPL_fprintf(TEST->outfp, "   Blong ");
       else if(TP[i] == HPL_BLONG_M)
         HPL_fprintf(TEST->outfp, "  BlongM ");
+      else if(TP[i] == HPL_BIDIR)
+        HPL_fprintf(TEST->outfp, "   BiDir ");
     }
     if(*NTPS > 8) {
       HPL_fprintf(TEST->outfp, "\n        ");
@@ -1452,6 +1460,8 @@ void HPL_pdinfo(int          ARGC,
           HPL_fprintf(TEST->outfp, "   Blong ");
         else if(TP[i] == HPL_BLONG_M)
           HPL_fprintf(TEST->outfp, "  BlongM ");
+        else if(TP[i] == HPL_BIDIR)
+          HPL_fprintf(TEST->outfp, "   BiDir ");
       }
       if(*NTPS > 16) {
         HPL_fprintf(TEST->outfp, "\n        ");
@@ -1468,6 +1478,8 @@ void HPL_pdinfo(int          ARGC,
             HPL_fprintf(TEST->outfp, "   Blong ");
           else if(TP[i] == HPL_BLONG_M)
             HPL_fprintf(TEST->outfp, "  BlongM ");
+          else if(TP[i] == HPL_BIDIR)
+            HPL_fprintf(TEST->outfp, "   BiDir ");
         }
       }
     }
